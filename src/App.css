@@ -1,0 +1,44 @@
+body {
+    height: 100%;
+}
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+/* ------------------------------------------------ */
+
+.board-cell {
+    border-radius: 0px;
+    border-color: black;
+    font-size: 200%;
+    height: 100px;
+    width: 100px;
+}
+
+.game {
+    margin: auto;
+    padding: 20% 0;
+    width: 300px;
+}
+
+.game-board {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    line-height: 0;
+    margin: auto;
+    width: 300px;
+}
+
+.game-info {
+    font-size: 125%;
+    margin: 15px;
+    text-align: center;
+}
+
+.restart-button {
+    margin-top: 15px;
+    text-align: right;
+}
