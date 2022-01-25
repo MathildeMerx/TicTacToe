@@ -4,6 +4,7 @@ import { BoardCell, computeGameOutcome, computeNextPlayer } from "./cells.js";
 import "@fontsource/roboto/300.css";
 import Button from "@mui/material/Button";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import { Link } from "react-router-dom";
 
 function App() {
     const [board, setBoard] = useState(Array(9).fill(null));
@@ -27,6 +28,7 @@ function App() {
                         setBoard={setBoard}
                         nextPlayer={nextPlayer}
                         gameOutcome={gameOutcome}
+                        key={e}
                     />
                 ))}
             </div>
@@ -42,6 +44,7 @@ function App() {
                     Restart
                 </Button>
             </div>
+            <Link to="/TicTacToeHistory"> Tic tac toe with history</Link>
         </div>
     );
 }
