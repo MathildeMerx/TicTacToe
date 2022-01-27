@@ -1,7 +1,7 @@
 import "./ticTacToe.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import {
+    useDataFromLocalStorage,
     BoardCellHistory,
     latestStep,
     computeNextPlayer,
@@ -10,12 +10,14 @@ import {
 import { RefreshIcon } from "@heroicons/react/solid";
 
 function TicTacToe() {
-    const [boardHistory, setBoardHistory] = useState(
+    const [boardHistory, setBoardHistory] = useDataFromLocalStorage(
+        "boardHistory",
         Array(10)
             .fill(null)
             .map(() => Array(9).fill(null))
     );
-    let [stepNumber, setStepNumber] = useState(0);
+    console.log(boardHistory);
+    let [stepNumber, setStepNumber] = useDataFromLocalStorage("stepNumber", 0);
     const nextPlayer = computeNextPlayer(boardHistory[stepNumber]);
     const gameOutcome = computeGameOutcome(boardHistory[stepNumber]);
 

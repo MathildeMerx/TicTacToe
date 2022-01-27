@@ -17,7 +17,8 @@ button {
 }
 
 button:disabled {
-    color: var(--contrast-color);
+    color: var(--disabled-color);
+    cursor: default;
 }
 
 html {
@@ -29,7 +30,8 @@ html {
 :root {
     --contrast-color: #3f3ba5;
     --dark-color: #151438;
-    --light-color: #95c9bb;
+    --light-color: #9dd4c5;
+    --disabled-color: #688c83;
 }
 
 /* ------------------------------------------------ */

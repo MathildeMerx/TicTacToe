@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 function latestStep(boardHistory) {
     return 9 - boardHistory[9].filter((e) => e === null).length;
 }
@@ -87,4 +89,24 @@ function computeGameOutcome(board) {
     return null;
 }
 
-export { BoardCellHistory, latestStep, computeNextPlayer, computeGameOutcome };
+function useDataFromLocalStorage(variableName, initialValue) {
+    const [variable, setVariable] = useState(() => {
+        const valueInLocalStorage = window.localStorage.getItem(variableName);
+        return JSON.parse(valueInLocalStorage) ?? initialValue;
+    });
+
+    useEffect(
+        () =>
+            window.localStorage.setItem(variableName, JSON.stringify(variable)),
+        [variable, variableName]
+    );
+
+    return [variable, setVariable];
+}
+export {
+    BoardCellHistory,
+    latestStep,
+    computeNextPlayer,
+    computeGameOutcome,
+    useDataFromLocalStorage,
+};
