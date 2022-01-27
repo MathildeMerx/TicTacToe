@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
 function latestStep(boardHistory) {
+    /* Determines the number of moves already played */
     return 9 - boardHistory[9].filter((e) => e === null).length;
 }
 
 function BoardCellHistory({
-    gameOutcome,
+    /* One cell of the tic tac toe game  */ gameOutcome,
     boardHistory,
     stepNumber,
     setStepNumber,
@@ -34,7 +35,7 @@ function BoardCellHistory({
     );
 }
 
-function cellClickHistory(
+function cellClickHistory /* Reaction when clicking in a cell */(
     gameOutcome,
     boardHistory,
     stepNumber,
@@ -44,8 +45,10 @@ function cellClickHistory(
     setBoardHistory
 ) {
     if (gameOutcome || boardHistory[stepNumber - 1][index]) {
+        /* If the game is already finished or the cell is already full, do nothing */
         return;
     } else {
+        /* Else we create a copy of the board, update it with the new move, set it as the new board value, and increase the step  */
         let copyHistory = JSON.parse(JSON.stringify(boardHistory));
         let copyCurrentLine = [...copyHistory[stepNumber - 1]];
         copyCurrentLine[index] = nextPlayer;
@@ -63,10 +66,12 @@ function cellClickHistory(
 }
 
 function computeNextPlayer(board) {
+    /* Returns whether the next player is X or O */
     return board.filter((x) => x === null).length % 2 === 0 ? "O" : "X";
 }
 
 function computeGameOutcome(board) {
+    /* Returns whether a player has won, the game is draw, or none of these */
     const combinations = [
         [0, 1, 2],
         [3, 4, 5],
@@ -90,6 +95,7 @@ function computeGameOutcome(board) {
 }
 
 function useDataFromLocalStorage(variableName, initialValue) {
+    /* Uses local storage to store a state */
     const [variable, setVariable] = useState(() => {
         const valueInLocalStorage = window.localStorage.getItem(variableName);
         return JSON.parse(valueInLocalStorage) ?? initialValue;
