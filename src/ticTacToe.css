@@ -1,0 +1,114 @@
+a {
+    border-color: var(--contrast-color);
+    border-style: solid;
+    border-radius: 30px;
+    color: var(--light-color);
+    font-size: 100%;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+button {
+    background-color: var(--dark-color);
+    border-color: var(--contrast-color);
+    border-style: solid;
+    color: var(--light-color);
+    cursor: pointer;
+}
+
+button:disabled {
+    color: var(--contrast-color);
+}
+
+html {
+    background-color: var(--dark-color);
+    box-sizing: border-box;
+    color: var(--light-color);
+}
+
+:root {
+    --contrast-color: #3f3ba5;
+    --dark-color: #151438;
+    --light-color: #95c9bb;
+}
+
+/* ------------------------------------------------ */
+
+.board-cell {
+    font-size: 200%;
+    height: 100px;
+    width: 100px;
+}
+
+.button-icon {
+    align-items: center;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px;
+    width: 100px;
+}
+
+.game {
+    flex-basis: 50%;
+}
+
+.game-board {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    line-height: 0;
+    margin: auto;
+    width: 300px;
+}
+
+.game-info {
+    color: var(--light-color);
+    font-size: 125%;
+    margin: 15px;
+    text-align: center;
+}
+
+.history-button {
+    border-style: none;
+    line-height: 1.44;
+    padding-bottom: 16px;
+    width: 120px;
+}
+
+.history-steps {
+    display: flex;
+    flex-basis: 25%;
+    flex-direction: column;
+    margin-top: 52px;
+}
+
+.icon {
+    height: 16px;
+    width: 16px;
+}
+
+.link {
+    margin-left: 200px;
+}
+
+.page {
+    display: flex;
+    margin-top: 20%;
+}
+
+.restart-button {
+    font-size: 85%;
+    margin-top: 15px;
+    text-align: right;
+    width: 100%;
+}
+
+.tabs {
+    color: var(--light-color);
+    flex-basis: 25%;
+    font-size: 85%;
+    padding-left: 3%;
+    margin-top: 52px;
+}

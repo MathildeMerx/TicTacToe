@@ -1,13 +1,15 @@
-import "./App.css";
+import "./ticTacToe.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { computeGameOutcome, computeNextPlayer } from "./cells.js";
-import { BoardCellHistory, latestStep } from "./cellHistory.js";
-import "@fontsource/roboto/300.css";
-import Button from "@mui/material/Button";
-import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import {
+    BoardCellHistory,
+    latestStep,
+    computeNextPlayer,
+    computeGameOutcome,
+} from "./ticTacToeLogic.jsx";
+import { RefreshIcon } from "@heroicons/react/solid";
 
-function AppHistory() {
+function TicTacToe() {
     const [boardHistory, setBoardHistory] = useState(
         Array(10)
             .fill(null)
@@ -20,7 +22,10 @@ function AppHistory() {
     return (
         <div className="page">
             <div className="tabs">
-                <Link to="/"> Tic tac toe</Link>
+                <Link to="/" className="link">
+                    {" "}
+                    Main page
+                </Link>
             </div>
             <div className="game">
                 <p className="game-info">
@@ -44,9 +49,8 @@ function AppHistory() {
                         />
                     ))}
                     <div className="restart-button">
-                        <Button
-                            size="small"
-                            sx={{ mx: "3px", color: "primary.dark" }}
+                        <button
+                            className="button-icon"
                             onClick={() => {
                                 setBoardHistory(
                                     Array(10)
@@ -55,19 +59,17 @@ function AppHistory() {
                                 );
                                 setStepNumber(0);
                             }}
-                            variant="text"
-                            startIcon={<RestartAltIcon />}
                         >
+                            <RefreshIcon className="icon" />
                             Restart
-                        </Button>
+                        </button>
                     </div>
                 </div>
             </div>
             <div className="history-steps">
                 {[...Array(9).keys()].map((e) =>
                     e < latestStep(boardHistory) ? (
-                        <Button
-                            sx={{ mt: "-2px" }}
+                        <button
                             className="history-button"
                             key={e}
                             onClick={() => {
@@ -75,9 +77,9 @@ function AppHistory() {
                             }}
                         >
                             Go back to step {e}
-                        </Button>
+                        </button>
                     ) : e === latestStep(boardHistory) ? (
-                        <Button
+                        <button
                             disabled
                             sx={{ mt: "-2px" }}
                             className="history-button"
@@ -87,7 +89,7 @@ function AppHistory() {
                             }}
                         >
                             Go back to step {e}
-                        </Button>
+                        </button>
                     ) : null
                 )}
             </div>
@@ -95,4 +97,4 @@ function AppHistory() {
     );
 }
 
-export default AppHistory;
+export default TicTacToe;
