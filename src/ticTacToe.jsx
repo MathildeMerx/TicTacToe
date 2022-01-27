@@ -34,7 +34,7 @@ function TicTacToe() {
         <>
             <div className="title">
                 {" "}
-                <p>Tic Tac Toe</p>
+                <h1>Tic Tac Toe</h1>
             </div>
             <div className="page">
                 <div className="tabs">

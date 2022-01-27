@@ -29,6 +29,11 @@ button:disabled {
     cursor: default;
 }
 
+h1 {
+    color: var(--contrast-primary);
+    font-size: 300%;
+}
+
 html {
     background-color: var(--dark-color);
     box-sizing: border-box;
@@ -115,8 +120,6 @@ html {
 }
 
 .title {
-    color: var(--contrast-primary);
-    font-size: 300%;
     height: 20vh;
     padding-top: 40px;
     text-align: center;
