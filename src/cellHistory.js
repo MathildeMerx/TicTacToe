@@ -1,4 +1,6 @@
-function computeStepNumber(boardHistory) {
+import Button from "@mui/material/Button";
+
+function latestStep(boardHistory) {
     return 9 - boardHistory[9].filter((e) => e === null).length;
 }
 
@@ -12,7 +14,7 @@ function BoardCellHistory({
     setBoardHistory,
 }) {
     return (
-        <button
+        <Button
             variant="outlined"
             className="board-cell"
             onClick={() =>
@@ -29,7 +31,7 @@ function BoardCellHistory({
         >
             {" "}
             {boardHistory[stepNumber][index]}
-        </button>
+        </Button>
     );
 }
 
@@ -42,14 +44,14 @@ function cellClickHistory(
     nextPlayer,
     setBoardHistory
 ) {
-    if (gameOutcome || boardHistory[stepNumber][index]) {
+    if (gameOutcome || boardHistory[stepNumber - 1][index]) {
         return;
     } else {
-        console.log(`stepNumber: ${stepNumber}`);
         let copyHistory = JSON.parse(JSON.stringify(boardHistory));
-        copyHistory[stepNumber][index] = nextPlayer;
+        let copyCurrentLine = [...copyHistory[stepNumber - 1]];
+        copyCurrentLine[index] = nextPlayer;
+        copyHistory[stepNumber] = copyCurrentLine;
         for (let j = stepNumber + 1; j <= 9; j++) {
-            // console.log(`For loop, here's ${j}th iteration`);
             copyHistory[j] = [...copyHistory[stepNumber]];
         }
         console.log(
@@ -57,8 +59,8 @@ function cellClickHistory(
         );
         console.log(`Here's the board when clicking on a cell: ${copyHistory}`);
         setBoardHistory(copyHistory);
-        setStepNumber(stepNumber + 1);
+        setStepNumber(stepNumber);
     }
 }
 
-export { computeStepNumber, BoardCellHistory };
+export { BoardCellHistory, latestStep };

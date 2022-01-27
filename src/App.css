@@ -1,10 +1,5 @@
-body {
-    height: 100%;
-}
-
 html {
     box-sizing: border-box;
-    height: 100%;
 }
 
 /* ------------------------------------------------ */
@@ -18,9 +13,7 @@ html {
 }
 
 .game {
-    margin: auto;
-    padding: 20% 0;
-    width: 300px;
+    flex-basis: 33%;
 }
 
 .game-board {
@@ -33,12 +26,35 @@ html {
 }
 
 .game-info {
+    color: #1565c0;
     font-size: 125%;
     margin: 15px;
     text-align: center;
 }
 
+.history-button {
+    line-height: 1.7;
+    width: 150px;
+}
+
+.history-steps {
+    display: flex;
+    flex-basis: 33%;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.page {
+    display: flex;
+    margin-top: 20%;
+}
+
 .restart-button {
     margin-top: 15px;
     text-align: right;
+    width: 100%;
+}
+
+.tabs {
+    flex-basis: 33%;
 }
