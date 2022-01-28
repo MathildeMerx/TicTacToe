@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import TicTacToe from "./ticTacToe";
+import Button from "./Button";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
@@ -11,6 +12,7 @@ ReactDOM.render(
         <Routes>
             <Route path="/" element={<App />} />
             <Route path="/TicTacToe" element={<TicTacToe />} />
+            <Route path="/Button" element={<Button />} />
         </Routes>
     </BrowserRouter>,
     document.getElementById("root")

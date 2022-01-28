@@ -1,0 +1,76 @@
+:root {
+    --contrast-color: #3f3ba5;
+    --dark-color: #151438;
+    --light-color: #9dd4c5;
+    --disabled-color: #688c83;
+    --contrast-primary: #e3397a;
+}
+
+a {
+    border-color: var(--contrast-color);
+    border-style: solid;
+    border-radius: 30px;
+    color: var(--light-color);
+    font-size: 100%;
+    padding: 8px 16px 10px;
+    text-decoration: none;
+}
+
+button {
+    background-color: var(--dark-color);
+    border-color: var(--contrast-color);
+    border-style: solid;
+    color: var(--light-color);
+    cursor: pointer;
+}
+
+button:disabled {
+    color: var(--disabled-color);
+    cursor: default;
+}
+
+h1 {
+    color: var(--contrast-primary);
+    font-size: 400%;
+    margin-bottom: -16px;
+}
+
+html {
+    background-color: var(--dark-color);
+    box-sizing: border-box;
+    color: var(--light-color);
+}
+
+/*------------------------------------------------------------------------------------------------*/
+
+.content {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: 24% 51% 24%;
+    margin-top: 64px;
+}
+
+.description {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: -12px;
+}
+
+.title {
+    height: 20vh;
+    padding-top: 40px;
+    text-align: center;
+}
+
+.title p {
+    font-size: 125%;
+    margin-top: 80px;
+    margin-left: 3%;
+}
+
+.tab-link {
+    font-size: 85%;
+    grid-column: 1;
+    grid-row: 1;
+    text-align: end;
+}
