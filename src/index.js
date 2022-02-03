@@ -3,16 +3,16 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import TicTacToe from "./ticTacToe";
-import Button from "./Button";
+import TicTacToe from "./ticTacToe/TicTacToe";
+import ButtonMaker from "./buttonMaker/ButtonMaker";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/TicTacToe" element={<TicTacToe />} />
-            <Route path="/Button" element={<Button />} />
+            <Route path="/tic_tac_toe" element={<TicTacToe />} />
+            <Route path="/button_maker" element={<ButtonMaker />} />
         </Routes>
     </BrowserRouter>,
     document.getElementById("root")

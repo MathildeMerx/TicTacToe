@@ -1,0 +1,102 @@
+:root {
+    --contrast-color: #3f3ba5;
+    --dark-color: #151438;
+    --dark-contrast-color: #292855;
+    --light-color: #9dd4c5;
+    --disabled-color: #688c83;
+    --bright-contrast-color: #e3397a;
+}
+
+.board-cell {
+    font-size: 3em;
+    height: 120px;
+    width: 120px;
+}
+
+.button-icon {
+    align-items: center;
+    border-radius: 30px;
+    display: flex;
+    font-size: 1em;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 8px 8px;
+    width: 120px;
+}
+
+.game {
+    flex-basis: 50%;
+}
+
+.game-board {
+    display: flex;
+    flex-wrap: wrap;
+    height: 360px;
+    line-height: 0;
+    margin: auto;
+    width: 360px;
+}
+
+.game-info {
+    text-align: center;
+}
+
+.high-content {
+    grid-column: 2;
+    grid-row: 2 / span;
+}
+
+.history-button {
+    border-radius: 30px;
+    border-style: none;
+    font-size: 1em;
+    padding-top: 10px;
+    padding-bottom: 9px;
+    position: relative;
+    width: 120px;
+}
+
+.history-steps {
+    display: flex;
+    flex-basis: 25%;
+    flex-direction: column;
+    margin-top: -10px;
+}
+
+.icon {
+    height: 16px;
+    width: 16px;
+}
+
+.link {
+    margin-top: 12px;
+}
+
+.restart-button {
+    margin-top: 32px;
+    /* align-self: end; */
+    width: 100%;
+}
+
+.tabs {
+    flex-basis: 25%;
+    margin-top: 64px;
+    text-align: right;
+}
+
+.vertical-line {
+    background-color: var(--disabled-color);
+    height: 60%;
+    left: -0.2rem;
+    position: absolute;
+    top: 6px;
+    width: 2px;
+}
+
+.wrapper {
+    display: grid;
+    grid-column-gap: 32px;
+    grid-row-gap: 48px;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 32px repeat(5, 24px);
+}
