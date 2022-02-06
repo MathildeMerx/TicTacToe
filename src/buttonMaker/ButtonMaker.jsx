@@ -1,14 +1,7 @@
 import "../App.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 function ButtonMaker() {
-    const [buttonText, setButtonText] = useState("");
-
-    function buttonTextChange(event) {
-        setButtonText(event.target.value);
-    }
-
     return (
         <div>
             <header className="title">
