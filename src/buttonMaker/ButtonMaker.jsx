@@ -42,7 +42,7 @@ function ButtonMaker() {
 
             <main className="wrapper">
                 <section className="subtitle">
-                    <h2>To be done, stay tuned!</h2>
+                    <h2>In progress, stay tuned!</h2>
                 </section>
 
                 <nav className="page-link">
