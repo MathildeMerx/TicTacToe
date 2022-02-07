@@ -12,38 +12,20 @@ let borderStyles = {
 };
 
 // One cell of the tic tac toe game
-function BoardCellHistory({
-    gameOutcome,
-    boardHistory,
-    stepNumber,
-    setStepNumber,
-    index,
-    nextPlayer,
-    setBoardHistory,
-}) {
+function BoardCell({ index, displayValue, handleClick }) {
     return (
         <button
             className="board-cell"
             style={{ borderStyle: `${borderStyles[index]}` }}
-            onClick={() =>
-                cellClickHistory(
-                    gameOutcome,
-                    boardHistory,
-                    stepNumber + 1,
-                    setStepNumber,
-                    index,
-                    nextPlayer,
-                    setBoardHistory
-                )
-            }
+            onClick={handleClick}
         >
-            {boardHistory[stepNumber][index]}
+            {displayValue}
         </button>
     );
 }
 
 // Reaction when clicking in a cell
-function cellClickHistory(
+function cellClick(
     gameOutcome,
     boardHistory,
     stepNumber,
@@ -57,7 +39,8 @@ function cellClickHistory(
         return;
     }
 
-    //Else we create a copy of the board, update it with the new move, set it as the new board value, and increase the step
+    // Else we create a copy of the board, update it with the new move,
+    // set it as the new board value, and increase the step
     else {
         let copyHistory = JSON.parse(JSON.stringify(boardHistory));
         let copyCurrentLine = [...copyHistory[stepNumber - 1]];
@@ -74,4 +57,4 @@ function cellClickHistory(
     }
 }
 
-export { BoardCellHistory };
+export { BoardCell, cellClick };

@@ -68,13 +68,8 @@
     width: 16px;
 }
 
-.link {
-    margin-top: 12px;
-}
-
 .restart-button {
     margin-top: 32px;
-    /* align-self: end; */
     width: 100%;
 }
 
@@ -91,12 +86,4 @@
     position: absolute;
     top: 6px;
     width: 2px;
-}
-
-.wrapper {
-    display: grid;
-    grid-column-gap: 32px;
-    grid-row-gap: 48px;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 32px repeat(5, 24px);
 }

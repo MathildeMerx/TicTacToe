@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-//Uses local storage to store a state
+// Uses local storage to store a state
 function useDataFromLocalStorage(variableName, initialValue) {
     const [variable, setVariable] = useState(() => {
         const valueInLocalStorage = window.localStorage.getItem(variableName);

@@ -92,3 +92,24 @@ html {
     padding: 64px 0 56px;
     text-align: center;
 }
+
+.wrapper {
+    display: grid;
+    grid-column-gap: 32px;
+    grid-row-gap: 48px;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 32px repeat(5, 24px);
+}
+
+.wrapper nav {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+nav a {
+    display: block;
+    width: 100px;
+    text-align: center;
+}

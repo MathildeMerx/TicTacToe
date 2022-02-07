@@ -1,4 +1,4 @@
-//Determines the number of moves already played
+// Determines the number of moves already played
 function latestStep(boardHistory) {
     return 9 - boardHistory[9].filter((e) => e === null).length;
 }
@@ -10,7 +10,8 @@ function computeNextPlayer(board) {
 
 // Returns whether a player has won, the game is draw, or none of these
 function computeGameOutcome(board) {
-    // `combinations` represents the possible trios of indexes needed to win: each line, each column, and each diagonal
+    // `combinations` represents the possible trios of indexes needed to win:
+    // each line, each column, and each diagonal
     const combinations = [
         [0, 1, 2],
         [3, 4, 5],

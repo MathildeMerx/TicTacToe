@@ -8,7 +8,7 @@ import {
     computeGameOutcome,
 } from "./ticTacToeLogic";
 
-import { BoardCellHistory } from "./BoardCellHistory";
+import { BoardCell, cellClick } from "./BoardCell";
 
 import { RestartButton } from "./RestartButton";
 
@@ -34,7 +34,7 @@ function TicTacToe() {
     // Whether the game was won (and if yes by whom) or not
     const gameOutcome = computeGameOutcome(boardHistory[stepNumber]);
 
-    //A text describing the state of the game to the player: who's won if it's over, else who's next
+    // A text describing the state of the game to the player: who's won if it's over, else who's next
     let nextStepText = "";
     if (!gameOutcome) {
         nextStepText = `Next player: ${nextPlayer}`;
@@ -55,22 +55,29 @@ function TicTacToe() {
                     <h2>{nextStepText}</h2>
                 </section>
 
-                <nav className="page-link link">
+                <nav className="page-link">
                     <Link to="/">Main page</Link>
+                    <Link to="/button_maker">Button maker</Link>
                 </nav>
 
                 <section className="high-content">
                     <div className="game-board">
-                        {[...Array(9).keys()].map((e) => (
-                            <BoardCellHistory
-                                index={e}
-                                boardHistory={boardHistory}
-                                setBoardHistory={setBoardHistory}
-                                nextPlayer={nextPlayer}
-                                gameOutcome={gameOutcome}
-                                stepNumber={stepNumber}
-                                setStepNumber={setStepNumber}
-                                key={e}
+                        {[...Array(9).keys()].map((index) => (
+                            <BoardCell
+                                index={index}
+                                displayValue={boardHistory[stepNumber][index]}
+                                handleClick={() =>
+                                    cellClick(
+                                        gameOutcome,
+                                        boardHistory,
+                                        stepNumber + 1,
+                                        setStepNumber,
+                                        index,
+                                        nextPlayer,
+                                        setBoardHistory
+                                    )
+                                }
+                                key={index}
                             />
                         ))}
 
@@ -94,18 +101,16 @@ function TicTacToe() {
                                     setStepNumber(e);
                                 }}
                             >
-                                Back to step {e}
+                                {e === stepNumber
+                                    ? `Current step: ${stepNumber}`
+                                    : `Back to step ${e}`}
                                 {e === stepNumber ? (
                                     <span className="vertical-line"></span>
-                                ) : null}
+                                ) : null}{" "}
                             </button>
                         ) : null
                     )}
                 </aside>
-
-                <nav className="page-link link">
-                    <Link to="/button_maker">Button maker</Link>
-                </nav>
             </main>
         </>
     );

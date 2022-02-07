@@ -10,8 +10,8 @@ The second one will be a button maker: you'll be able to customize the text, the
 
 ## Using this repo
 
-Initially, you need to install the app: from the repo execute `npm install`.
+Initially, you need to install the required packages: from the repo execute `npm install`.
 
 Then to run the app in development mode, use `npm start`. You should be able to view it in you browser at the URL [http://localhost:3000](http://localhost:3000).
 
-To run the app for production, use `npm run build`.
+To perform the preparatory tasks required for production, use `npm run build`.

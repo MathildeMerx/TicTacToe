@@ -14,17 +14,20 @@ function App() {
                         have fun :)
                     </h2>
                 </section>
-                <nav className="page-link">
-                    <Link to="/tic_tac_toe"> Tic Tac Toe game</Link>
-                </nav>
+                <div className="page-link">
+                    <Link className="page-link" to="/tic_tac_toe">
+                        {" "}
+                        Tic Tac Toe game
+                    </Link>
+                </div>
                 <section>
                     A tic tac toe game, with a history of the ongoing game.
                     Closed the tab by mistake? No worries: your game is locally
                     stored!
                 </section>
-                <nav className="page-link">
+                <div className="page-link">
                     <Link to="/button_maker"> Button maker</Link>
-                </nav>
+                </div>
                 <section>
                     A button maker, in which you can customize size, color,
                     shape, and many other styles! To be implemented soon.
