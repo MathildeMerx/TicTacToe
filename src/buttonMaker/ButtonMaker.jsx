@@ -10,6 +10,7 @@ function ButtonMaker() {
         textColor: "",
         backgroundColor: "",
         align: "",
+        fontSize: "100",
     };
 
     function reducer(state, { type, payload }) {
@@ -107,6 +108,21 @@ function ButtonMaker() {
                         </div>
 
                         <br />
+                        <label htmlFor="fontSize">
+                            Font size (in %):
+                            <input
+                                type="range"
+                                min="0"
+                                max="1000"
+                                step="10"
+                                value={formState.fontSize}
+                                onChange={changeForm}
+                                class="slider"
+                                id="fontSize"
+                            />
+                        </label>
+
+                        <br />
                         <button onClick={handleSubmit}>
                             {" "}
                             Test your button !
@@ -120,6 +136,7 @@ function ButtonMaker() {
                             backgroundColor: `#${formState.backgroundColor}`,
                             textAlign: `${formState.align}`,
                             minWidth: "120px",
+                            fontSize: `${formState.fontSize}%`,
                         }}
                     >
                         {formState.text}
