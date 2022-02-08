@@ -1,36 +1,32 @@
 import "../App.css";
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState } from "react";
+import { hexToRGB, RGBToHex } from "./colorEncoding";
 import axios from "axios";
 
 function ButtonMaker() {
     function queryAnswer(query) {
-        axios
-            .get(
-                `https://www.thecolorapi.com/scheme?hex=${query}&mode=monochrome&count=5`
-            )
-            .then((response) => {
-                console.log(
-                    `API query: ${response.data.colors["0"].hex.clean}`
-                );
-                setButtonBackgroundColor(response.data.colors["0"].hex.clean);
-            })
-            .catch((error) => console.error(error));
-    }
-    const refButtonTextColor = useRef();
-    const refButtonText = useRef();
+        console.log(`Color in RGB: from ${query} to ${hexToRGB(query)} `);
+        var data = {
+            model: "default",
+            input: [hexToRGB(query), "N", "N", "N", "N"],
+        };
 
-    const [buttonTextColor, setButtonTextColor] = useState("ffffff");
-    const [buttonText, setButtonText] = useState("Customize your button!");
-    const [buttonBackgroundColor, setButtonBackgroundColor] =
-        useState("000000");
+        axios
+            .post("http://colormind.io/api/", JSON.stringify(data))
+            .then((response) => {
+                console.log(`With Axios ${response.data.result}`);
+                setButtonBackgroundColor(RGBToHex(response.data.result[1]));
+            })
+            .catch((error) => console.log(error));
+    }
+
+    const [buttonTextColor, setButtonTextColor] = useState("");
+    const [buttonText, setButtonText] = useState("Button Text");
+    const [buttonBackgroundColor, setButtonBackgroundColor] = useState("");
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(`This is the color: ${refButtonTextColor.current.value}`);
-        console.log(`This is the color: ${refButtonText.current.value}`);
-        setButtonTextColor(refButtonTextColor.current.value);
-        setButtonText(refButtonText.current.value);
         queryAnswer(buttonTextColor);
     }
 
@@ -57,7 +53,10 @@ function ButtonMaker() {
                             <input
                                 type="text"
                                 id="buttonText"
-                                ref={refButtonText}
+                                value={buttonText}
+                                onChange={(event) =>
+                                    setButtonText(event.target.value)
+                                }
                             />
                         </label>
                         <br />
@@ -66,7 +65,10 @@ function ButtonMaker() {
                             <input
                                 type="text"
                                 id="buttonTextColor"
-                                ref={refButtonTextColor}
+                                value={buttonTextColor}
+                                onChange={(event) =>
+                                    setButtonTextColor(event.target.value)
+                                }
                             />
                         </label>
                         <br />

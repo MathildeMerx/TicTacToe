@@ -103,6 +103,7 @@ html {
 
 .wrapper nav {
     align-items: flex-end;
+
     display: flex;
     flex-direction: column;
     gap: 20px;
