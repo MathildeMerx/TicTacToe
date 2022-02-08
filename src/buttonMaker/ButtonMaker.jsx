@@ -1,33 +1,55 @@
 import "../App.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { hexToRGB, RGBToHex } from "./colorEncoding";
-import axios from "axios";
+import { useReducer } from "react";
+import { queryAnswer } from "./apiQuery";
+import { RadioAlignText } from "./RadioAlignText";
 
 function ButtonMaker() {
-    function queryAnswer(query) {
-        console.log(`Color in RGB: from ${query} to ${hexToRGB(query)} `);
-        var data = {
-            model: "default",
-            input: [hexToRGB(query), "N", "N", "N", "N"],
-        };
+    const initialForm = {
+        text: "",
+        textColor: "",
+        backgroundColor: "",
+        align: "",
+    };
 
-        axios
-            .post("http://colormind.io/api/", JSON.stringify(data))
-            .then((response) => {
-                console.log(`With Axios ${response.data.result}`);
-                setButtonBackgroundColor(RGBToHex(response.data.result[1]));
-            })
-            .catch((error) => console.log(error));
+    function reducer(state, { type, payload }) {
+        switch (type) {
+            case "update":
+                return { ...state, [payload.key]: payload.value };
+            case "reset":
+                return initialForm;
+            default:
+                throw new Error(
+                    `Unexpected action type: ${type} when trying to modify ${payload.key}.`
+                );
+        }
     }
 
-    const [buttonTextColor, setButtonTextColor] = useState("");
-    const [buttonText, setButtonText] = useState("Button Text");
-    const [buttonBackgroundColor, setButtonBackgroundColor] = useState("");
+    const [formState, formDispatch] = useReducer(reducer, initialForm);
 
     function handleSubmit(event) {
         event.preventDefault();
-        queryAnswer(buttonTextColor);
+        queryAnswer(formState.backgroundColor, formDispatch);
+    }
+
+    function changeForm(event) {
+        formDispatch({
+            type: "update",
+            payload: {
+                key: event.target.id,
+                value: event.target.value,
+            },
+        });
+    }
+
+    function clickForm(event) {
+        formDispatch({
+            type: "update",
+            payload: {
+                key: event.target.name,
+                value: event.target.id,
+            },
+        });
     }
 
     return (
@@ -48,29 +70,42 @@ function ButtonMaker() {
 
                 <section className="high-content">
                     <form>
-                        <label htmlFor="buttonText">
+                        <label htmlFor="text">
                             Button text: <br />
                             <input
                                 type="text"
-                                id="buttonText"
-                                value={buttonText}
-                                onChange={(event) =>
-                                    setButtonText(event.target.value)
-                                }
+                                id="text"
+                                value={formState.text}
+                                onChange={changeForm}
+                                placeholder=""
                             />
                         </label>
+
                         <br />
-                        <label htmlFor="buttonTextColor">
-                            Font color: <br />
+
+                        <label htmlFor="textColor">
+                            Font color (between <i>000000</i> and <i>ffffff</i>
+                            ): <br />
                             <input
                                 type="text"
-                                id="buttonTextColor"
-                                value={buttonTextColor}
-                                onChange={(event) =>
-                                    setButtonTextColor(event.target.value)
-                                }
+                                id="textColor"
+                                value={formState.textColor}
+                                onChange={changeForm}
                             />
                         </label>
+
+                        <br />
+                        <div>
+                            <p>Align text: </p>
+                            {["left", "center", "right"].map((e) => (
+                                <RadioAlignText
+                                    whereAlign={e}
+                                    onClick={clickForm}
+                                    key={e}
+                                />
+                            ))}
+                        </div>
+
                         <br />
                         <button onClick={handleSubmit}>
                             {" "}
@@ -78,13 +113,16 @@ function ButtonMaker() {
                         </button>
                     </form>
                     The button you are making is:
+                    <br />
                     <button
                         style={{
-                            color: `#${buttonTextColor}`,
-                            backgroundColor: `#${buttonBackgroundColor}`,
+                            color: `#${formState.textColor}`,
+                            backgroundColor: `#${formState.backgroundColor}`,
+                            textAlign: `${formState.align}`,
+                            minWidth: "120px",
                         }}
                     >
-                        {buttonText}
+                        {formState.text}
                     </button>
                 </section>
             </main>
