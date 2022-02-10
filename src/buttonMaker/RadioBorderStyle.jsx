@@ -1,19 +1,19 @@
 import { clickForm } from "./formLogic";
 
-function RadioAlignText({ whereAlign, formDispatch }) {
+function RadioBorderStyle({ borderStyle, formDispatch }) {
     return (
         <>
             <input
                 type="radio"
-                id={whereAlign}
-                name="align"
+                id={borderStyle}
+                name="borderStyle"
                 onClick={(e) => clickForm(e, formDispatch)}
             />
             <label>
-                {whereAlign.charAt(0).toUpperCase() + whereAlign.slice(1)}
+                {borderStyle.charAt(0).toUpperCase() + borderStyle.slice(1)}
             </label>
         </>
     );
 }
 
-export { RadioAlignText };
+export { RadioBorderStyle };

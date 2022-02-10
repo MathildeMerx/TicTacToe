@@ -1,16 +1,24 @@
+import { queryAnswer } from "./apiQuery";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { TextForm } from "./TextForm";
+import { BorderForm } from "./BorderForm";
+import { FormatForm } from "./FormatForm";
 import { useReducer } from "react";
-import { queryAnswer } from "./apiQuery";
-import { RadioAlignText } from "./RadioAlignText";
 
 function ButtonMaker() {
     const initialForm = {
-        text: "",
-        textColor: "",
-        backgroundColor: "",
-        align: "",
+        text: "Customize me!",
+        textColor: "9dd4c5",
+        backgroundColor: "151438",
+        align: "center",
         fontSize: "100",
+        borderStyle: "solid",
+        borderColor: "3f3ba5",
+        borderWidth: "3",
+        width: "150",
+        height: "50",
+        borderRadius: "30",
     };
 
     function reducer(state, { type, payload }) {
@@ -29,28 +37,14 @@ function ButtonMaker() {
     const [formState, formDispatch] = useReducer(reducer, initialForm);
 
     function handleSubmit(event) {
-        event.preventDefault();
-        queryAnswer(formState.backgroundColor, formDispatch);
-    }
-
-    function changeForm(event) {
-        formDispatch({
-            type: "update",
-            payload: {
-                key: event.target.id,
-                value: event.target.value,
-            },
-        });
-    }
-
-    function clickForm(event) {
-        formDispatch({
-            type: "update",
-            payload: {
-                key: event.target.name,
-                value: event.target.id,
-            },
-        });
+        queryAnswer(
+            [
+                formState.textColor,
+                formState.backgroundColor,
+                formState.borderColor,
+            ],
+            formDispatch
+        );
     }
 
     return (
@@ -70,64 +64,20 @@ function ButtonMaker() {
                 </nav>
 
                 <section className="high-content">
-                    <form>
-                        <label htmlFor="text">
-                            Button text: <br />
-                            <input
-                                type="text"
-                                id="text"
-                                value={formState.text}
-                                onChange={changeForm}
-                                placeholder=""
-                            />
-                        </label>
-
-                        <br />
-
-                        <label htmlFor="textColor">
-                            Font color (between <i>000000</i> and <i>ffffff</i>
-                            ): <br />
-                            <input
-                                type="text"
-                                id="textColor"
-                                value={formState.textColor}
-                                onChange={changeForm}
-                            />
-                        </label>
-
-                        <br />
-                        <div>
-                            <p>Align text: </p>
-                            {["left", "center", "right"].map((e) => (
-                                <RadioAlignText
-                                    whereAlign={e}
-                                    onClick={clickForm}
-                                    key={e}
-                                />
-                            ))}
-                        </div>
-
-                        <br />
-                        <label htmlFor="fontSize">
-                            Font size (in %):
-                            <input
-                                type="range"
-                                min="0"
-                                max="1000"
-                                step="10"
-                                value={formState.fontSize}
-                                onChange={changeForm}
-                                class="slider"
-                                id="fontSize"
-                            />
-                        </label>
-
-                        <br />
-                        <button onClick={handleSubmit}>
-                            {" "}
-                            Test your button !
-                        </button>
-                    </form>
+                    <TextForm
+                        formState={formState}
+                        formDispatch={formDispatch}
+                    />
+                    <br />
+                    <BorderForm
+                        formState={formState}
+                        formDispatch={formDispatch}
+                    />
+                    <br />
+                    <FormatForm
+                        formState={formState}
+                        formDispatch={formDispatch}
+                    />
                     The button you are making is:
                     <br />
                     <button
@@ -135,12 +85,19 @@ function ButtonMaker() {
                             color: `#${formState.textColor}`,
                             backgroundColor: `#${formState.backgroundColor}`,
                             textAlign: `${formState.align}`,
-                            minWidth: "120px",
                             fontSize: `${formState.fontSize}%`,
+                            borderStyle: `${formState.borderStyle}`,
+                            borderWidth: `${formState.borderWidth}px`,
+                            borderColor: `#${formState.borderColor}`,
+                            width: `${formState.width}px`,
+                            height: `${formState.height}px`,
+                            borderRadius: `${formState.borderRadius}px`,
                         }}
                     >
                         {formState.text}
                     </button>
+                    <br />
+                    <button onClick={handleSubmit}> Test your button !</button>
                 </section>
             </main>
         </div>
