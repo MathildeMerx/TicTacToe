@@ -17,8 +17,6 @@ function queryAnswer(colors, formDispatch) {
         }
     }
 
-    console.log(`Unknown colors: ${unknownColors}`);
-
     var data = {
         model: "default",
         input: colorInput,
@@ -27,11 +25,7 @@ function queryAnswer(colors, formDispatch) {
     axios
         .post("http://colormind.io/api/", JSON.stringify(data))
         .then((response) => {
-            console.log(
-                `The input was: ${colorInput}, the response is: ${response.data.result}`
-            );
             for (let i = 0; i < unknownColors.length; i++) {
-                console.log(`index: ${colors.length - nbKnownColors + i}`);
                 formDispatch({
                     type: "update",
                     payload: {

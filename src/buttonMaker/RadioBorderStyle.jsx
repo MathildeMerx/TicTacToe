@@ -8,6 +8,7 @@ function RadioBorderStyle({ borderStyle, formDispatch }) {
                 id={borderStyle}
                 name="borderStyle"
                 onClick={(e) => clickForm(e, formDispatch)}
+                className="radio"
             />
             <label>
                 {borderStyle.charAt(0).toUpperCase() + borderStyle.slice(1)}

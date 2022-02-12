@@ -2,43 +2,41 @@ import { ColorInput } from "./ColorInput";
 import { changeForm } from "./formLogic";
 import { RadioAlignText } from "./RadioAlignText";
 
+const textAlign = ["left", "center", "right"];
+
 function TextForm({ formState, formDispatch }) {
     return (
-        <form>
-            <h3>Text styling</h3>
-            <label htmlFor="text">
-                Button text: <br />
+        <form className="tab-form">
+            <label className="form-input" htmlFor="text">
+                <p>Button text:</p>
                 <input
                     type="text"
                     id="text"
                     value={formState.text}
                     onChange={(e) => changeForm(e, formDispatch)}
-                    placeholder=""
                 />
             </label>
-
-            <br />
             <ColorInput
                 colorName="textColor"
                 stateVariable={formState}
                 formDispatch={formDispatch}
             />
 
-            <br />
-            <div>
-                <p>Align text: </p>
-                {["left", "center", "right"].map((e) => (
-                    <RadioAlignText
-                        whereAlign={e}
-                        formDispatch={formDispatch}
-                        key={e}
-                    />
-                ))}
+            <div className="form-input">
+                <p>Align text: {formState.align} </p>
+                <p>
+                    {textAlign.map((e) => (
+                        <RadioAlignText
+                            whereAlign={e}
+                            formDispatch={formDispatch}
+                            key={e}
+                        />
+                    ))}
+                </p>
             </div>
 
-            <br />
-            <label htmlFor="fontSize">
-                Font size (in %):
+            <label className="form-input" htmlFor="fontSize">
+                <p>Font size (in %): {formState.fontSize}</p>
                 <input
                     type="range"
                     min="0"
@@ -49,10 +47,9 @@ function TextForm({ formState, formDispatch }) {
                     className="slider"
                     id="fontSize"
                 />
-                {formState.fontSize}
             </label>
         </form>
     );
 }
 
-export { TextForm };
+export { TextForm, textAlign };

@@ -2,42 +2,41 @@ import { ColorInput } from "./ColorInput";
 import { changeForm } from "./formLogic";
 import { RadioBorderStyle } from "./RadioBorderStyle";
 
+const borderStyles = [
+    "none",
+    "dotted",
+    "dashed",
+    "solid",
+    "double",
+    "groove",
+    "ridge",
+    "inset",
+    "outset",
+];
+
 function BorderForm({ formState, formDispatch }) {
     return (
-        <form>
-            <h3>Border styling</h3>
-            <div>
-                <p>Border style: </p>
-                {[
-                    "none",
-                    "dotted",
-                    "dashed",
-                    "solid",
-                    "double",
-                    "groove",
-                    "ridge",
-                    "inset",
-                    "outset",
-                ].map((e) => (
-                    <RadioBorderStyle
-                        borderStyle={e}
-                        formDispatch={formDispatch}
-                        key={e}
-                    />
-                ))}
+        <form className="tab-form">
+            <div className="form-input">
+                <p>Border style: {formState.borderStyle}</p>
+                <p style={{ maxWidth: "50%", textAlign: "right" }}>
+                    {borderStyles.map((e) => (
+                        <RadioBorderStyle
+                            borderStyle={e}
+                            formDispatch={formDispatch}
+                            key={e}
+                        />
+                    ))}
+                </p>
             </div>
-
-            <br />
-
             <ColorInput
                 colorName="borderColor"
                 stateVariable={formState}
                 formDispatch={formDispatch}
             />
 
-            <br />
-            <label htmlFor="borderWidth">
-                Border width (in px):
+            <label className="form-input" htmlFor="borderWidth">
+                <p>Border width (in px): {formState.borderWidth}</p>
                 <input
                     type="range"
                     min="1"
@@ -47,12 +46,10 @@ function BorderForm({ formState, formDispatch }) {
                     className="slider"
                     id="borderWidth"
                 />
-                {formState.borderWidth}
             </label>
 
-            <br />
-            <label htmlFor="borderRadius">
-                Border radius (in px):
+            <label className="form-input" htmlFor="borderRadius">
+                <p>Border radius (in px): {formState.borderRadius}</p>
                 <input
                     type="range"
                     min="1"
@@ -62,10 +59,9 @@ function BorderForm({ formState, formDispatch }) {
                     className="slider"
                     id="borderRadius"
                 />
-                {formState.borderRadius}
             </label>
         </form>
     );
 }
 
-export { BorderForm };
+export { BorderForm, borderStyles };

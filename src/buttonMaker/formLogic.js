@@ -9,6 +9,7 @@ function changeForm(event, formDispatch) {
 }
 
 function clickForm(event, formDispatch) {
+    event.preventDefault();
     formDispatch({
         type: "update",
         payload: {
