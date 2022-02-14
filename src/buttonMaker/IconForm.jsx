@@ -2,10 +2,13 @@ import * as allIcons from "@chakra-ui/icons";
 import "./buttonMaker.css";
 import { changeForm, clickForm } from "./formLogic";
 
+// A module of all the availabe icons
 let { Icon, createIcon, ...iconsModule } = allIcons;
 
+// A list of all the icon names
 let iconsName = Object.keys(iconsModule).map((e) => e);
 
+// A dropdown for the user to pick their icon
 function DropdownItem({ iconName, Icon, formDispatch }) {
     return (
         <button
@@ -19,6 +22,7 @@ function DropdownItem({ iconName, Icon, formDispatch }) {
     );
 }
 
+// A function to make the icon names more pleasant to read
 function pascalToSpaces(expression) {
     return (
         expression
@@ -35,19 +39,27 @@ function pascalToSpaces(expression) {
 }
 
 function IconForm({ formState, formDispatch }) {
+    // Making an object of the module of the icons
     let iconsObject = Object.fromEntries(
         Object.keys(iconsModule).map((e) => [pascalToSpaces(e), iconsModule[e]])
     );
+
+    // The user-friendly name of each icon
     let iconKeys = Object.keys(iconsObject).map((e) => pascalToSpaces(e));
+
+    // What to show in the dropdown menu when it's not dropped
     let MenuIcon = iconsModule[formState.icon];
     return (
         <form className="tab-form">
             <div className="form-input">
                 <p>Choose your icon:</p>
+
                 <div className="dropdown">
                     <button>
                         <MenuIcon /> {pascalToSpaces(formState.icon)}
                     </button>
+
+                    {/* Dropdown menu to choose the icon */}
                     <div className="dropdown-content">
                         {iconKeys.map((iconName) => {
                             return (
@@ -62,6 +74,8 @@ function IconForm({ formState, formDispatch }) {
                     </div>
                 </div>
             </div>
+
+            {/* Slider to choose the size of the icon */}
             <label className="form-input" htmlFor="borderWidth">
                 <p>
                     Icon width (in %): {Math.floor(formState.iconWidth * 100)}

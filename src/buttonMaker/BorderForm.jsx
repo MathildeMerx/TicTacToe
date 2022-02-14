@@ -2,6 +2,7 @@ import { ColorInput } from "./ColorInput";
 import { changeForm } from "./formLogic";
 import { RadioBorderStyle } from "./RadioBorderStyle";
 
+// All possible border styles
 const borderStyles = [
     "none",
     "dotted",
@@ -17,6 +18,7 @@ const borderStyles = [
 function BorderForm({ formState, formDispatch }) {
     return (
         <form className="tab-form">
+            {/* Radio button  to choose the border style */}
             <div className="form-input">
                 <p>Border style: {formState.borderStyle}</p>
                 <p style={{ maxWidth: "50%", textAlign: "right" }}>
@@ -29,12 +31,15 @@ function BorderForm({ formState, formDispatch }) {
                     ))}
                 </p>
             </div>
+
+            {/* Color input to choose the border color */}
             <ColorInput
                 colorName="borderColor"
                 stateVariable={formState}
                 formDispatch={formDispatch}
             />
 
+            {/* Slider to choose the border width */}
             <label className="form-input" htmlFor="borderWidth">
                 <p>Border width (in px): {formState.borderWidth}</p>
                 <input
@@ -48,6 +53,7 @@ function BorderForm({ formState, formDispatch }) {
                 />
             </label>
 
+            {/* Slider to choose the border radius */}
             <label className="form-input" htmlFor="borderRadius">
                 <p>Border radius (in px): {formState.borderRadius}</p>
                 <input

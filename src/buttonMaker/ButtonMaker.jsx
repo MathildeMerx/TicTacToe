@@ -13,7 +13,10 @@ import { generateRandom } from "./generateRandom";
 import { apiPun } from "./apiPun";
 
 function ButtonMaker() {
+    // Tells which tab the user currently uses
     const [activeTabIndex, setActiveTabIndex] = useState(0);
+
+    // The initial state of the button
     const initialForm = {
         text: "Customize me!",
         textColor: "9dd4c5",
@@ -30,6 +33,7 @@ function ButtonMaker() {
         iconWidth: "1",
     };
 
+    // Reducer function to modify the button state
     function reducer(state, { type, payload }) {
         switch (type) {
             case "update":
@@ -43,19 +47,22 @@ function ButtonMaker() {
         }
     }
 
+    // State of the button
     const [formState, formDispatch] = useReducer(reducer, initialForm);
 
-    function handleSubmit(event) {
+    // Will modify the colors left blank
+    function onSubmitGenerateColor(event) {
         queryAnswer(
             [
                 formState.textColor,
-                formState.backgroundColor,
                 formState.borderColor,
+                formState.backgroundColor,
             ],
             formDispatch
         );
     }
 
+    // Component of the icon
     const Icon = allIcons[formState.icon];
 
     return (
@@ -72,11 +79,14 @@ function ButtonMaker() {
                         of the bread pun API.
                     </h2>
                 </section>
+
                 <nav className="page-link">
                     <Link to="/"> Main page</Link>
                     <Link to="/tic_tac_toe"> Tic Tac Toe game</Link>
                 </nav>
+
                 <div>
+                    {/* Navigation between the different tabs */}
                     <nav className="tab-nav">
                         <button
                             className={
@@ -121,6 +131,7 @@ function ButtonMaker() {
                     </nav>
 
                     <div className="tab-content">
+                        {/* Tab to modify the text of the button */}
                         <TabContent
                             tabIndex={0}
                             activeTabIndex={activeTabIndex}
@@ -130,6 +141,8 @@ function ButtonMaker() {
                                 formDispatch={formDispatch}
                             />
                         </TabContent>
+
+                        {/* Tab to modify the border of the button */}
                         <TabContent
                             tabIndex={1}
                             activeTabIndex={activeTabIndex}
@@ -139,6 +152,8 @@ function ButtonMaker() {
                                 formDispatch={formDispatch}
                             />
                         </TabContent>
+
+                        {/* Tab to modify the format of the button */}
                         <TabContent
                             tabIndex={2}
                             activeTabIndex={activeTabIndex}
@@ -148,6 +163,8 @@ function ButtonMaker() {
                                 formDispatch={formDispatch}
                             />
                         </TabContent>
+
+                        {/* Tab to modify the icon of the button */}
                         <TabContent
                             tabIndex={3}
                             activeTabIndex={activeTabIndex}
@@ -162,6 +179,8 @@ function ButtonMaker() {
 
                 <aside className="button-viewer">
                     <p> The button you are making is: </p>
+
+                    {/* Preview of the button */}
                     <button
                         style={{
                             color: `#${formState.textColor}`,
@@ -186,7 +205,9 @@ function ButtonMaker() {
                         />
                         {formState.text}
                     </button>
+
                     <div className="button-line">
+                        {/* Button to generate a random button */}
                         <button
                             onClick={() => {
                                 formDispatch({
@@ -194,12 +215,18 @@ function ButtonMaker() {
                                     payload: generateRandom(),
                                 });
                                 apiPun(formDispatch);
+                                onSubmitGenerateColor(
+                                    ["", "", ""],
+                                    formDispatch
+                                );
                             }}
                         >
                             Generate random
                         </button>
+
+                        {/* Button to generate colors */}
                         <div>
-                            <button onClick={handleSubmit}>
+                            <button onClick={onSubmitGenerateColor}>
                                 Generate colors
                             </button>
                             <QuestionIcon />

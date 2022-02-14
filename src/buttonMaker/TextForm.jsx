@@ -2,11 +2,13 @@ import { ColorInput } from "./ColorInput";
 import { changeForm } from "./formLogic";
 import { RadioAlignText } from "./RadioAlignText";
 
+// Possible alignment styles
 const textAlign = ["left", "center", "right"];
 
 function TextForm({ formState, formDispatch }) {
     return (
         <form className="tab-form">
+            {/* Text input to choose the text of the button */}
             <label className="form-input" htmlFor="text">
                 <p>Button text:</p>
                 <input
@@ -16,12 +18,15 @@ function TextForm({ formState, formDispatch }) {
                     onChange={(e) => changeForm(e, formDispatch)}
                 />
             </label>
+
+            {/* Text input to choose the color of the text of the button */}
             <ColorInput
                 colorName="textColor"
                 stateVariable={formState}
                 formDispatch={formDispatch}
             />
 
+            {/* Radio button to choose the alignement of the text of the button */}
             <div className="form-input">
                 <p>Align text: {formState.align} </p>
                 <p>
@@ -35,6 +40,7 @@ function TextForm({ formState, formDispatch }) {
                 </p>
             </div>
 
+            {/* Slider to choose the font size of the text of the button */}
             <label className="form-input" htmlFor="fontSize">
                 <p>Font size (in %): {formState.fontSize}</p>
                 <input

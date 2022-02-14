@@ -1,3 +1,4 @@
+// Function modifying the relevant values when a user updates a text or slider field
 function changeForm(event, formDispatch) {
     formDispatch({
         type: "update",
@@ -8,6 +9,7 @@ function changeForm(event, formDispatch) {
     });
 }
 
+// Function modifying the relevant values when a user updates a radio button
 function clickForm(event, formDispatch) {
     event.preventDefault();
     formDispatch({

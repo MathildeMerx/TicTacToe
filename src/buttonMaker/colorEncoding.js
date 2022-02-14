@@ -1,3 +1,4 @@
+// Returns the RGB encoding of the hex-encoded input
 function hexToRGB(hexNumber) {
     let res = Array(3).fill(null);
     let decNumber = Number(`0x${hexNumber}`);
@@ -14,6 +15,7 @@ function intToHex(intNumber) {
     return res.length === 1 ? "0" + res : res;
 }
 
+// Returns the hex encoding of the RGB-encoded input
 function RGBToHex(RGBNumber) {
     const redChanel = intToHex(RGBNumber[0]);
     const greenChanel = intToHex(RGBNumber[1]);

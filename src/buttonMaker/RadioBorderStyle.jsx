@@ -1,5 +1,6 @@
 import { clickForm } from "./formLogic";
 
+// Radio button for choosing border style
 function RadioBorderStyle({ borderStyle, formDispatch }) {
     return (
         <>

@@ -1,5 +1,6 @@
 import { clickForm } from "./formLogic";
 
+// Radio button for choosing text alignment
 function RadioAlignText({ whereAlign, formDispatch }) {
     return (
         <>

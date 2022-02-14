@@ -2,7 +2,9 @@ import { borderStyles } from "./BorderForm";
 import { textAlign } from "./TextForm";
 import { iconsName } from "./IconForm";
 
+// Generates a random button
 function generateRandom() {
+    // For each field, a random relevant value is generated
     const textColor = Math.floor(Math.random() * 16777216).toString(16);
     const backgroundColor = Math.floor(Math.random() * 16777216).toString(16);
     const borderColor = Math.floor(Math.random() * 16777216).toString(16);
