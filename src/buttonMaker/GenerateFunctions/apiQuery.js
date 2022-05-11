@@ -2,7 +2,7 @@ import axios from "axios";
 import { hexToRGB, RGBToHex } from "./colorEncoding";
 
 // Updates the colors the user hasn't filled in to those suggested by the aPI below
-function queryAnswer(colors, formDispatch) {
+async function queryAnswer(colors) {
     // Order in which the colors were given as inputs
     let dictColors = ["textColor", "borderColor", "backgroundColor"];
 
@@ -33,22 +33,21 @@ function queryAnswer(colors, formDispatch) {
     };
 
     // API call
-    axios
+    return axios
         .post("http://colormind.io/api/", JSON.stringify(data))
 
         .then((response) => {
-            for (let i = 0; i < unknownColors.length; i++) {
-                // Each color chosen by the API is assigned
-                formDispatch({
-                    type: "update",
-                    payload: {
-                        key: dictColors[unknownColors[i]],
-                        value: RGBToHex(
-                            response.data.result[nbKnownColors + i]
+            let newColors = {};
+            unknownColors.forEach(
+                (value, index) =>
+                    (newColors = {
+                        ...newColors,
+                        [dictColors[unknownColors[index]]]: RGBToHex(
+                            response.data.result[nbKnownColors + index]
                         ),
-                    },
-                });
-            }
+                    })
+            );
+            return newColors;
         })
 
         .catch((error) => console.log(error));

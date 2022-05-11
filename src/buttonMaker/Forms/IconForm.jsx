@@ -3,20 +3,25 @@ import "../buttonMaker.css";
 import { changeForm, clickForm } from "./formLogic";
 
 // A module of all the availabe icons
+//Icon and createIcon are removed because they're not icons
+//(only ways to create new icons provided by Chakra UI)
 let { Icon, createIcon, ...iconsModule } = allIcons;
 
 // A list of all the icon names
-let iconsName = Object.keys(iconsModule).map((iconName) => iconName);
+let iconsName = Object.keys(iconsModule).map((e) => e);
 
-// A dropdown for the user to pick their icon
+// A dropdown button for the user to pick their icon
 function DropdownItem({ iconName, Icon, formDispatch }) {
     return (
         <button
             name={"icon"}
             id={iconName.replace(/\s/g, "")}
-            onClick={(event) => clickForm(event, formDispatch)}
+            onClick={(event) => {
+                event.preventDefault();
+                clickForm(event.target.name, event.target.id, formDispatch);
+            }}
         >
-            <Icon /> &nbsp;
+            <Icon className="icon-dropdown" />
             {iconName}
         </button>
     );
@@ -66,16 +71,14 @@ function IconForm({ formState, formDispatch }) {
 
                     {/* Dropdown menu to choose the icon */}
                     <div className="dropdown-content">
-                        {iconKeys.map((iconName) => {
-                            return (
-                                <DropdownItem
-                                    iconName={iconName}
-                                    Icon={iconsObject[iconName]}
-                                    formDispatch={formDispatch}
-                                    key={iconName}
-                                />
-                            );
-                        })}
+                        {iconKeys.map((iconName) => (
+                            <DropdownItem
+                                iconName={iconName}
+                                Icon={iconsObject[iconName]}
+                                formDispatch={formDispatch}
+                                key={iconName}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
@@ -91,7 +94,13 @@ function IconForm({ formState, formDispatch }) {
                     max="1"
                     step="0.05"
                     value={formState.iconWidth}
-                    onChange={(event) => changeForm(event, formDispatch)}
+                    onChange={(event) =>
+                        changeForm(
+                            event.target.id,
+                            event.target.value,
+                            formDispatch
+                        )
+                    }
                     className="slider"
                     id="iconWidth"
                 />

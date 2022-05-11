@@ -1,6 +1,6 @@
 import { ColorInput } from "./ColorInput";
 import { changeForm } from "./formLogic";
-import { RadioBorderStyle } from "./RadioBorderStyle";
+import { RadioButton } from "./RadioButton";
 
 // All possible border styles
 const borderStyles = [
@@ -21,10 +21,11 @@ function BorderForm({ formState, formDispatch }) {
             {/* Radio button  to choose the border style */}
             <div className="form-input">
                 <p>Border style: {formState.borderStyle}</p>
-                <p style={{ maxWidth: "50%", textAlign: "right" }}>
+                <p className="radio-border-buttons">
                     {borderStyles.map((style) => (
-                        <RadioBorderStyle
-                            borderStyle={style}
+                        <RadioButton
+                            value={style}
+                            valueType="borderStyle"
                             formDispatch={formDispatch}
                             key={style}
                         />
@@ -47,7 +48,13 @@ function BorderForm({ formState, formDispatch }) {
                     min="1"
                     max="20"
                     value={formState.borderWidth}
-                    onChange={(event) => changeForm(event, formDispatch)}
+                    onChange={(event) =>
+                        changeForm(
+                            event.target.id,
+                            event.target.value,
+                            formDispatch
+                        )
+                    }
                     className="slider"
                     id="borderWidth"
                 />
@@ -61,7 +68,13 @@ function BorderForm({ formState, formDispatch }) {
                     min="1"
                     max="150"
                     value={formState.borderRadius}
-                    onChange={(event) => changeForm(event, formDispatch)}
+                    onChange={(event) =>
+                        changeForm(
+                            event.target.id,
+                            event.target.value,
+                            formDispatch
+                        )
+                    }
                     className="slider"
                     id="borderRadius"
                 />

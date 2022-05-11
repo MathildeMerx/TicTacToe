@@ -1,6 +1,6 @@
 import { ColorInput } from "./ColorInput";
 import { changeForm } from "./formLogic";
-import { RadioAlignText } from "./RadioAlignText";
+import { RadioButton } from "./RadioButton";
 
 // Possible alignment styles
 const textAlign = ["left", "center", "right"];
@@ -15,7 +15,13 @@ function TextForm({ formState, formDispatch }) {
                     type="text"
                     id="text"
                     value={formState.text}
-                    onChange={(event) => changeForm(event, formDispatch)}
+                    onChange={(event) =>
+                        changeForm(
+                            event.target.id,
+                            event.target.value,
+                            formDispatch
+                        )
+                    }
                 />
             </label>
 
@@ -31,8 +37,9 @@ function TextForm({ formState, formDispatch }) {
                 <p>Align text: {formState.align} </p>
                 <p>
                     {textAlign.map((alignStyle) => (
-                        <RadioAlignText
-                            whereAlign={alignStyle}
+                        <RadioButton
+                            value={alignStyle}
+                            valueType="align"
                             formDispatch={formDispatch}
                             key={alignStyle}
                         />
@@ -49,7 +56,13 @@ function TextForm({ formState, formDispatch }) {
                     max="1000"
                     step="10"
                     value={formState.fontSize}
-                    onChange={(event) => changeForm(event, formDispatch)}
+                    onChange={(event) =>
+                        changeForm(
+                            event.target.id,
+                            event.target.value,
+                            formDispatch
+                        )
+                    }
                     className="slider"
                     id="fontSize"
                 />

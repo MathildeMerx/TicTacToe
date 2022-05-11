@@ -11,25 +11,27 @@ function ColorInput({ colorName, stateVariable, formDispatch }) {
                 ):
             </p>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <div className="color-picker">
                 {/* Input where the user can fill in their color */}
                 <input
                     className="color-input"
                     type="text"
                     id={colorName}
                     value={stateVariable[colorName]}
-                    onChange={(event) => changeForm(event, formDispatch)}
+                    onChange={(event) =>
+                        changeForm(
+                            event.target.id,
+                            event.target.value,
+                            formDispatch
+                        )
+                    }
                 />
 
                 {/* Display of the chosen color */}
                 <div
+                    className="color-display"
                     style={{
                         backgroundColor: `#${stateVariable[colorName]}`,
-                        height: "16px",
-                        width: "16px",
-                        borderStyle: "solid",
-                        borderWidth: "2px",
-                        borderColor: "white",
                     }}
                 ></div>
             </div>

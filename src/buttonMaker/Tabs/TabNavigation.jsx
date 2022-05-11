@@ -6,6 +6,7 @@ function TabNavigation({ activeTabIndex, setActiveTabIndex }) {
         <nav className="tab-nav">
             {["Text", "Border", "Format", "Icon"].map((element, index) => (
                 <ButtonTabNav
+                    key={index}
                     index={index}
                     activeTabIndex={activeTabIndex}
                     setActiveTabIndex={setActiveTabIndex}

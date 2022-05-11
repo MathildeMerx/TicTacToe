@@ -5,9 +5,6 @@ import { iconsName } from "../Forms/IconForm";
 // Generates a random button
 function generateRandom() {
     // For each field, a random relevant value is generated
-    const textColor = Math.floor(Math.random() * 16777216).toString(16);
-    const backgroundColor = Math.floor(Math.random() * 16777216).toString(16);
-    const borderColor = Math.floor(Math.random() * 16777216).toString(16);
     const borderStyle =
         borderStyles[Math.floor(Math.random() * borderStyles.length)];
     const align = textAlign[Math.floor(Math.random() * textAlign.length)];
@@ -19,13 +16,9 @@ function generateRandom() {
     const iconWidth = Math.random() * 0.5 + 0.5;
 
     return {
-        text: "",
-        textColor: textColor,
-        backgroundColor: backgroundColor,
         align: align,
         fontSize: fontSize,
         borderStyle: borderStyle,
-        borderColor: borderColor,
         borderWidth: borderWidth,
         width: width,
         height: "75",

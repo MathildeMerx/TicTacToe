@@ -1,4 +1,5 @@
 import "../App.css";
+import "./buttonMaker.css";
 import { useReducer } from "react";
 import { initialForm } from "./initialForm";
 import { reducer } from "./reducer";

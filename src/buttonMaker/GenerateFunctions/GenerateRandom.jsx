@@ -1,4 +1,5 @@
 import { apiPun } from "./apiPun";
+import { queryAnswer } from "./apiQuery";
 import { generateRandom } from "./generateRandom";
 import { onSubmitGenerateColor } from "./onSubmitGenerateColor";
 
@@ -15,13 +16,23 @@ function GenerateRandom({ formDispatch }) {
     );
 }
 
-function clickGenerateRandom(formDispatch, apiPun, onSubmitGenerateColor) {
+async function clickGenerateRandom(
+    formDispatch,
+    apiPun,
+    onSubmitGenerateColor
+) {
+    const buttonText = await apiPun(formDispatch);
+    const newColors = await queryAnswer(["", "", ""]);
+    const generatedButton = {
+        ...generateRandom(),
+        text: buttonText,
+        ...newColors,
+    };
+
     formDispatch({
         type: "reset",
-        payload: generateRandom(),
+        payload: generatedButton,
     });
-    apiPun(formDispatch);
-    onSubmitGenerateColor({}, formDispatch);
 }
 
 export { GenerateRandom };

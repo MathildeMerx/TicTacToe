@@ -12,7 +12,7 @@ function FormatForm({ formState, formDispatch }) {
                 formDispatch={formDispatch}
             />
 
-            {/* Slider to choose the width od the button */}
+            {/* Slider to choose the width of the button */}
             <label className="form-input" htmlFor="width">
                 <p>Width (in px): {formState.width}</p>
                 <input
@@ -21,7 +21,13 @@ function FormatForm({ formState, formDispatch }) {
                     max="300"
                     step="10"
                     value={formState.width}
-                    onChange={(event) => changeForm(event, formDispatch)}
+                    onChange={(event) =>
+                        changeForm(
+                            event.target.id,
+                            event.target.value,
+                            formDispatch
+                        )
+                    }
                     className="slider"
                     id="width"
                 />
@@ -36,7 +42,13 @@ function FormatForm({ formState, formDispatch }) {
                     max="300"
                     step="10"
                     value={formState.height}
-                    onChange={(event) => changeForm(event, formDispatch)}
+                    onChange={(event) =>
+                        changeForm(
+                            event.target.id,
+                            event.target.value,
+                            formDispatch
+                        )
+                    }
                     className="slider"
                     id="height"
                 />
