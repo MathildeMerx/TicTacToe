@@ -30,7 +30,7 @@ function App() {
                 </div>
                 <section>
                     A button maker, in which you can customize size, color,
-                    shape, and many other styles! To be implemented soon.
+                    shape, and many other styles! Implementation in progress.
                 </section>
             </main>
         </div>

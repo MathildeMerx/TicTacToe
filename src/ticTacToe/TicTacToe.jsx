@@ -91,20 +91,20 @@ function TicTacToe() {
                 </section>
 
                 <aside className="history-steps">
-                    {[...Array(10).keys()].map((e) =>
-                        e <= latestStep(boardHistory) ? (
+                    {[...Array(10).keys()].map((step) =>
+                        step <= latestStep(boardHistory) ? (
                             <button
-                                disabled={e === stepNumber}
+                                disabled={step === stepNumber}
                                 className="history-button"
-                                key={e}
+                                key={step}
                                 onClick={() => {
-                                    setStepNumber(e);
+                                    setStepNumber(step);
                                 }}
                             >
-                                {e === stepNumber
+                                {step === stepNumber
                                     ? `Current step: ${stepNumber}`
-                                    : `Back to step ${e}`}
-                                {e === stepNumber ? (
+                                    : `Back to step ${step}`}
+                                {step === stepNumber ? (
                                     <span className="vertical-line"></span>
                                 ) : null}{" "}
                             </button>

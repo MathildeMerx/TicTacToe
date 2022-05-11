@@ -6,7 +6,7 @@ function RestartButton({ setStepNumber, setBoardHistory }) {
         setBoardHistory(
             Array(10)
                 .fill(null)
-                .map((e) => Array(9).fill(null))
+                .map((element) => Array(9).fill(null))
         );
     }
 
