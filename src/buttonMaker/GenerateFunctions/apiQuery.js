@@ -4,8 +4,10 @@ import { hexToRGB, RGBToHex } from "./colorEncoding";
 // Updates the colors the user hasn't filled in to those suggested by the aPI below
 function queryAnswer(colors, formDispatch) {
     // Order in which the colors were given as inputs
-    let dictColors = { 0: "textColor", 1: "borderColor", 2: "backgroundColor" };
+    let dictColors = ["textColor", "borderColor", "backgroundColor"];
 
+    //We fill with "N"s here because that's the way of telling the API
+    //a color isn't filled in
     let colorInput = Array(colors.length).fill("N");
     let nbKnownColors = 0;
     let unknownColors = [];

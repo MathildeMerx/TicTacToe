@@ -21,7 +21,7 @@ function FormatForm({ formState, formDispatch }) {
                     max="300"
                     step="10"
                     value={formState.width}
-                    onChange={(e) => changeForm(e, formDispatch)}
+                    onChange={(event) => changeForm(event, formDispatch)}
                     className="slider"
                     id="width"
                 />
@@ -36,7 +36,7 @@ function FormatForm({ formState, formDispatch }) {
                     max="300"
                     step="10"
                     value={formState.height}
-                    onChange={(e) => changeForm(e, formDispatch)}
+                    onChange={(event) => changeForm(event, formDispatch)}
                     className="slider"
                     id="height"
                 />

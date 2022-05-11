@@ -8,7 +8,7 @@ function RadioAlignText({ whereAlign, formDispatch }) {
                 type="radio"
                 id={whereAlign}
                 name="align"
-                onClick={(e) => clickForm(e, formDispatch)}
+                onClick={(event) => clickForm(event, formDispatch)}
             />
             <label>
                 {whereAlign.charAt(0).toUpperCase() + whereAlign.slice(1)}

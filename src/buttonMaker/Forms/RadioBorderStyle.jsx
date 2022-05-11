@@ -8,7 +8,7 @@ function RadioBorderStyle({ borderStyle, formDispatch }) {
                 type="radio"
                 id={borderStyle}
                 name="borderStyle"
-                onClick={(e) => clickForm(e, formDispatch)}
+                onClick={(event) => clickForm(event, formDispatch)}
                 className="radio"
             />
             <label>

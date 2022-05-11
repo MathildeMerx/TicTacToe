@@ -22,11 +22,11 @@ function BorderForm({ formState, formDispatch }) {
             <div className="form-input">
                 <p>Border style: {formState.borderStyle}</p>
                 <p style={{ maxWidth: "50%", textAlign: "right" }}>
-                    {borderStyles.map((e) => (
+                    {borderStyles.map((style) => (
                         <RadioBorderStyle
-                            borderStyle={e}
+                            borderStyle={style}
                             formDispatch={formDispatch}
-                            key={e}
+                            key={style}
                         />
                     ))}
                 </p>
@@ -47,7 +47,7 @@ function BorderForm({ formState, formDispatch }) {
                     min="1"
                     max="20"
                     value={formState.borderWidth}
-                    onChange={(e) => changeForm(e, formDispatch)}
+                    onChange={(event) => changeForm(event, formDispatch)}
                     className="slider"
                     id="borderWidth"
                 />
@@ -61,7 +61,7 @@ function BorderForm({ formState, formDispatch }) {
                     min="1"
                     max="150"
                     value={formState.borderRadius}
-                    onChange={(e) => changeForm(e, formDispatch)}
+                    onChange={(event) => changeForm(event, formDispatch)}
                     className="slider"
                     id="borderRadius"
                 />

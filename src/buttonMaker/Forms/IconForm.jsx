@@ -1,12 +1,12 @@
 import * as allIcons from "@chakra-ui/icons";
-import "./buttonMaker.css";
+import "../buttonMaker.css";
 import { changeForm, clickForm } from "./formLogic";
 
 // A module of all the availabe icons
 let { Icon, createIcon, ...iconsModule } = allIcons;
 
 // A list of all the icon names
-let iconsName = Object.keys(iconsModule).map((e) => e);
+let iconsName = Object.keys(iconsModule).map((iconName) => iconName);
 
 // A dropdown for the user to pick their icon
 function DropdownItem({ iconName, Icon, formDispatch }) {
@@ -14,7 +14,7 @@ function DropdownItem({ iconName, Icon, formDispatch }) {
         <button
             name={"icon"}
             id={iconName.replace(/\s/g, "")}
-            onClick={(e) => clickForm(e, formDispatch)}
+            onClick={(event) => clickForm(event, formDispatch)}
         >
             <Icon /> &nbsp;
             {iconName}
@@ -41,11 +41,16 @@ function pascalToSpaces(expression) {
 function IconForm({ formState, formDispatch }) {
     // Making an object of the module of the icons
     let iconsObject = Object.fromEntries(
-        Object.keys(iconsModule).map((e) => [pascalToSpaces(e), iconsModule[e]])
+        Object.keys(iconsModule).map((iconName) => [
+            pascalToSpaces(iconName),
+            iconsModule[iconName],
+        ])
     );
 
     // The user-friendly name of each icon
-    let iconKeys = Object.keys(iconsObject).map((e) => pascalToSpaces(e));
+    let iconKeys = Object.keys(iconsObject).map((iconName) =>
+        pascalToSpaces(iconName)
+    );
 
     // What to show in the dropdown menu when it's not dropped
     let MenuIcon = iconsModule[formState.icon];
@@ -86,7 +91,7 @@ function IconForm({ formState, formDispatch }) {
                     max="1"
                     step="0.05"
                     value={formState.iconWidth}
-                    onChange={(e) => changeForm(e, formDispatch)}
+                    onChange={(event) => changeForm(event, formDispatch)}
                     className="slider"
                     id="iconWidth"
                 />

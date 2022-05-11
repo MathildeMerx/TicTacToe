@@ -15,7 +15,7 @@ function TextForm({ formState, formDispatch }) {
                     type="text"
                     id="text"
                     value={formState.text}
-                    onChange={(e) => changeForm(e, formDispatch)}
+                    onChange={(event) => changeForm(event, formDispatch)}
                 />
             </label>
 
@@ -30,11 +30,11 @@ function TextForm({ formState, formDispatch }) {
             <div className="form-input">
                 <p>Align text: {formState.align} </p>
                 <p>
-                    {textAlign.map((e) => (
+                    {textAlign.map((alignStyle) => (
                         <RadioAlignText
-                            whereAlign={e}
+                            whereAlign={alignStyle}
                             formDispatch={formDispatch}
-                            key={e}
+                            key={alignStyle}
                         />
                     ))}
                 </p>
@@ -49,7 +49,7 @@ function TextForm({ formState, formDispatch }) {
                     max="1000"
                     step="10"
                     value={formState.fontSize}
-                    onChange={(e) => changeForm(e, formDispatch)}
+                    onChange={(event) => changeForm(event, formDispatch)}
                     className="slider"
                     id="fontSize"
                 />

@@ -1,6 +1,6 @@
 // Determines the number of moves already played
 function latestStep(boardHistory) {
-    return 9 - boardHistory[9].filter((e) => e === null).length;
+    return 9 - boardHistory[9].filter((cell) => cell === null).length;
 }
 
 // Returns whether the next player is X or O

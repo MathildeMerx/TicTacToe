@@ -1,6 +1,6 @@
-import { borderStyles } from "./BorderForm";
-import { textAlign } from "./TextForm";
-import { iconsName } from "./IconForm";
+import { borderStyles } from "../Forms/BorderForm";
+import { textAlign } from "../Forms/TextForm";
+import { iconsName } from "../Forms/IconForm";
 
 // Generates a random button
 function generateRandom() {

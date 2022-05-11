@@ -18,7 +18,7 @@ function ColorInput({ colorName, stateVariable, formDispatch }) {
                     type="text"
                     id={colorName}
                     value={stateVariable[colorName]}
-                    onChange={(e) => changeForm(e, formDispatch)}
+                    onChange={(event) => changeForm(event, formDispatch)}
                 />
 
                 {/* Display of the chosen color */}

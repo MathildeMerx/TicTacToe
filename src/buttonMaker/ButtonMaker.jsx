@@ -1,238 +1,30 @@
-import { queryAnswer } from "./apiQuery";
 import "../App.css";
-import { Link } from "react-router-dom";
-import { TextForm } from "./TextForm";
-import { BorderForm } from "./BorderForm";
-import { FormatForm } from "./FormatForm";
-import { IconForm } from "./IconForm";
-import { useState, useReducer } from "react";
-import * as allIcons from "@chakra-ui/icons";
-import { TabContent } from "./TabContent";
-import { QuestionIcon } from "./QuestionIcon";
-import { generateRandom } from "./generateRandom";
-import { apiPun } from "./apiPun";
+import { useReducer } from "react";
+import { initialForm } from "./initialForm";
+import { reducer } from "./reducer";
+import { Header } from "./Header";
+import { SubTitle } from "./SubTitle";
+import { Navigation } from "./Navigation";
+import { ButtonViewer } from "./ButtonViewer";
+import { Tabs } from "./Tabs/Tabs";
 
 function ButtonMaker() {
-    // Tells which tab the user currently uses
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
-
-    // The initial state of the button
-    const initialForm = {
-        text: "Customize me!",
-        textColor: "9dd4c5",
-        backgroundColor: "151438",
-        align: "center",
-        fontSize: "100",
-        borderStyle: "solid",
-        borderColor: "3f3ba5",
-        borderWidth: "3",
-        width: "150",
-        height: "75",
-        borderRadius: "30",
-        icon: "EditIcon",
-        iconWidth: "1",
-    };
-
-    // Reducer function to modify the button state
-    function reducer(state, { type, payload }) {
-        switch (type) {
-            case "update":
-                return { ...state, [payload.key]: payload.value };
-            case "reset":
-                return payload;
-            default:
-                throw new Error(
-                    `Unexpected action type: ${type} when trying to modify ${payload.key}.`
-                );
-        }
-    }
-
     // State of the button
     const [formState, formDispatch] = useReducer(reducer, initialForm);
 
-    // Will modify the colors left blank
-    function onSubmitGenerateColor(event) {
-        queryAnswer(
-            [
-                formState.textColor,
-                formState.borderColor,
-                formState.backgroundColor,
-            ],
-            formDispatch
-        );
-    }
-
-    // Component of the icon
-    const Icon = allIcons[formState.icon];
-
     return (
         <div>
-            <header className="title">
-                <h1>Button maker</h1>
-            </header>
+            <Header />
 
             <main className="wrapper">
-                <section className="subtitle">
-                    <h2 style={{ fontSize: "1.2em" }}>
-                        Create a lovely button with this button generator! Wanna
-                        have fun? Try and generate a random button with the help
-                        of the bread pun API.
-                    </h2>
-                </section>
+                <SubTitle />
 
-                <nav className="page-link">
-                    <Link to="/"> Main page</Link>
-                    <Link to="/tic_tac_toe"> Tic Tac Toe game</Link>
-                </nav>
-
-                <div>
-                    {/* Navigation between the different tabs */}
-                    <nav className="tab-nav">
-                        <button
-                            className={
-                                activeTabIndex === 0
-                                    ? "tab-active"
-                                    : "tab-inactive"
-                            }
-                            onClick={() => setActiveTabIndex(0)}
-                        >
-                            Text
-                        </button>
-                        <button
-                            className={
-                                activeTabIndex === 1
-                                    ? "tab-active"
-                                    : "tab-inactive"
-                            }
-                            onClick={() => setActiveTabIndex(1)}
-                        >
-                            Border
-                        </button>
-                        <button
-                            className={
-                                activeTabIndex === 2
-                                    ? "tab-active"
-                                    : "tab-inactive"
-                            }
-                            onClick={() => setActiveTabIndex(2)}
-                        >
-                            Format
-                        </button>
-                        <button
-                            className={
-                                activeTabIndex === 3
-                                    ? "tab-active"
-                                    : "tab-inactive"
-                            }
-                            onClick={() => setActiveTabIndex(3)}
-                        >
-                            Icon
-                        </button>
-                    </nav>
-
-                    <div className="tab-content">
-                        {/* Tab to modify the text of the button */}
-                        <TabContent
-                            tabIndex={0}
-                            activeTabIndex={activeTabIndex}
-                        >
-                            <TextForm
-                                formState={formState}
-                                formDispatch={formDispatch}
-                            />
-                        </TabContent>
-
-                        {/* Tab to modify the border of the button */}
-                        <TabContent
-                            tabIndex={1}
-                            activeTabIndex={activeTabIndex}
-                        >
-                            <BorderForm
-                                formState={formState}
-                                formDispatch={formDispatch}
-                            />
-                        </TabContent>
-
-                        {/* Tab to modify the format of the button */}
-                        <TabContent
-                            tabIndex={2}
-                            activeTabIndex={activeTabIndex}
-                        >
-                            <FormatForm
-                                formState={formState}
-                                formDispatch={formDispatch}
-                            />
-                        </TabContent>
-
-                        {/* Tab to modify the icon of the button */}
-                        <TabContent
-                            tabIndex={3}
-                            activeTabIndex={activeTabIndex}
-                        >
-                            <IconForm
-                                formState={formState}
-                                formDispatch={formDispatch}
-                            />
-                        </TabContent>
-                    </div>
-                </div>
-
-                <aside className="button-viewer">
-                    <p> The button you are making is: </p>
-
-                    {/* Preview of the button */}
-                    <button
-                        style={{
-                            color: `#${formState.textColor}`,
-                            backgroundColor: `#${formState.backgroundColor}`,
-                            textAlign: `${formState.align}`,
-                            fontSize: `${formState.fontSize}%`,
-                            borderStyle: `${formState.borderStyle}`,
-                            borderWidth: `${formState.borderWidth}px`,
-                            borderColor: `#${formState.borderColor}`,
-                            width: `${formState.width}px`,
-                            height: `${formState.height}px`,
-                            borderRadius: `${formState.borderRadius}px`,
-                            margin: "64px auto",
-                            display: "block",
-                        }}
-                    >
-                        <Icon
-                            style={{
-                                paddingRight: "0.75em",
-                                width: `${formState.iconWidth}em`,
-                            }}
-                        />
-                        {formState.text}
-                    </button>
-
-                    <div className="button-line">
-                        {/* Button to generate a random button */}
-                        <button
-                            onClick={() => {
-                                formDispatch({
-                                    type: "reset",
-                                    payload: generateRandom(),
-                                });
-                                apiPun(formDispatch);
-                                onSubmitGenerateColor(
-                                    ["", "", ""],
-                                    formDispatch
-                                );
-                            }}
-                        >
-                            Generate random
-                        </button>
-
-                        {/* Button to generate colors */}
-                        <div>
-                            <button onClick={onSubmitGenerateColor}>
-                                Generate colors
-                            </button>
-                            <QuestionIcon />
-                        </div>
-                    </div>
-                </aside>
+                <Navigation />
+                <Tabs formState={formState} formDispatch={formDispatch} />
+                <ButtonViewer
+                    formState={formState}
+                    formDispatch={formDispatch}
+                />
             </main>
         </div>
     );
