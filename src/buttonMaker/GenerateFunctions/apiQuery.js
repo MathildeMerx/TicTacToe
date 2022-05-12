@@ -31,26 +31,40 @@ async function queryAnswer(colors) {
         model: "default",
         input: colorInput,
     };
-
-    // API call
     axios
         .post("http://colormind.io/api/", JSON.stringify(data))
 
         .then((response) => {
-            let newColors = {};
-            unknownColors.forEach(
-                (value, index) =>
-                    (newColors = {
-                        ...newColors,
-                        [dictColors[unknownColors[index]]]: RGBToHex(
-                            response.data.result[nbKnownColors + index]
-                        ),
-                    })
-            );
-            console.log(newColors);
+            for (let i = 0; i < unknownColors.length; i++) {
+                // Each color chosen by the API is assigned
+                console.log({
+                    key: dictColors[unknownColors[i]],
+                    value: RGBToHex(response.data.result[nbKnownColors + i]),
+                });
+            }
         })
 
         .catch((error) => console.log(error));
+
+    // API call
+    // axios
+    //     .post("http://colormind.io/api/", JSON.stringify(data))
+
+    //     .then((response) => {
+    //         let newColors = {};
+    //         unknownColors.forEach(
+    //             (value, index) =>
+    //                 (newColors = {
+    //                     ...newColors,
+    //                     [dictColors[unknownColors[index]]]: RGBToHex(
+    //                         response.data.result[nbKnownColors + index]
+    //                     ),
+    //                 })
+    //         );
+    //         console.log(newColors);
+    //     })
+
+    //     .catch((error) => console.log(error));
 }
 
 export { queryAnswer };
