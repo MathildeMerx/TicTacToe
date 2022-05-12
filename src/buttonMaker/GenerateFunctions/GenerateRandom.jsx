@@ -1,5 +1,5 @@
 import { apiPun } from "./apiPun";
-import { queryAnswer } from "./apiQuery";
+import { apiColor } from "./apiColor";
 import { generateRandom } from "./generateRandom";
 import { onSubmitGenerateColor } from "./onSubmitGenerateColor";
 
@@ -22,7 +22,7 @@ async function clickGenerateRandom(
     onSubmitGenerateColor
 ) {
     const buttonText = await apiPun(formDispatch);
-    const newColors = await queryAnswer(["", "", ""]);
+    const newColors = await apiColor(["", "", ""]);
     const generatedButton = {
         ...generateRandom(),
         text: buttonText,
