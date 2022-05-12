@@ -32,7 +32,7 @@ async function queryAnswer(colors) {
         input: colorInput,
     };
     axios
-        .post("http://colormind.io/api/", JSON.stringify(data))
+        .post("https://colormind.io/api/", JSON.stringify(data))
 
         .then((response) => {
             for (let i = 0; i < unknownColors.length; i++) {
