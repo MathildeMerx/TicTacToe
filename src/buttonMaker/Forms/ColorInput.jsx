@@ -1,4 +1,4 @@
-import { changeForm } from "./formLogic";
+import { updateForm } from "./formLogic";
 
 // Component enabling the user to choose a color
 function ColorInput({ colorName, stateVariable, formDispatch }) {
@@ -19,7 +19,7 @@ function ColorInput({ colorName, stateVariable, formDispatch }) {
                     id={colorName}
                     value={stateVariable[colorName]}
                     onChange={(event) =>
-                        changeForm(
+                        updateForm(
                             event.target.id,
                             event.target.value,
                             formDispatch

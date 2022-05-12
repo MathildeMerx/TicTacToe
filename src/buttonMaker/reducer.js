@@ -2,7 +2,7 @@
 function reducer(state, { type, payload }) {
     switch (type) {
         case "update":
-            return { ...state, [payload.key]: payload.value };
+            return { ...state, ...payload };
         case "reset":
             return payload;
         default:

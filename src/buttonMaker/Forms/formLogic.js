@@ -1,23 +1,9 @@
-// Function modifying the relevant values when a user updates a text or slider field
-function changeForm(key, value, formDispatch) {
+// Function modifying the relevant values when a user updates an input field
+function updateForm(key, value, formDispatch) {
     formDispatch({
         type: "update",
-        payload: {
-            key: key,
-            value: value,
-        },
+        payload: { [key]: value },
     });
 }
 
-// Function modifying the relevant values when a user updates a radio button
-function clickForm(key, value, formDispatch) {
-    formDispatch({
-        type: "update",
-        payload: {
-            key: key,
-            value: value,
-        },
-    });
-}
-
-export { changeForm, clickForm };
+export { updateForm };

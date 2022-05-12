@@ -1,5 +1,5 @@
 import { ColorInput } from "./ColorInput";
-import { changeForm } from "./formLogic";
+import { updateForm } from "./formLogic";
 import { RadioButton } from "./RadioButton";
 
 // Possible alignment styles
@@ -16,7 +16,7 @@ function TextForm({ formState, formDispatch }) {
                     id="text"
                     value={formState.text}
                     onChange={(event) =>
-                        changeForm(
+                        updateForm(
                             event.target.id,
                             event.target.value,
                             formDispatch
@@ -57,7 +57,7 @@ function TextForm({ formState, formDispatch }) {
                     step="10"
                     value={formState.fontSize}
                     onChange={(event) =>
-                        changeForm(
+                        updateForm(
                             event.target.id,
                             event.target.value,
                             formDispatch

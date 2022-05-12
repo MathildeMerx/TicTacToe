@@ -1,6 +1,6 @@
 import * as allIcons from "@chakra-ui/icons";
 import "../buttonMaker.css";
-import { changeForm, clickForm } from "./formLogic";
+import { updateForm } from "./formLogic";
 
 // A module of all the availabe icons
 //Icon and createIcon are removed because they're not icons
@@ -18,7 +18,7 @@ function DropdownItem({ iconName, Icon, formDispatch }) {
             id={iconName.replace(/\s/g, "")}
             onClick={(event) => {
                 event.preventDefault();
-                clickForm(event.target.name, event.target.id, formDispatch);
+                updateForm(event.target.name, event.target.id, formDispatch);
             }}
         >
             <Icon className="icon-dropdown" />
@@ -95,7 +95,7 @@ function IconForm({ formState, formDispatch }) {
                     step="0.05"
                     value={formState.iconWidth}
                     onChange={(event) =>
-                        changeForm(
+                        updateForm(
                             event.target.id,
                             event.target.value,
                             formDispatch

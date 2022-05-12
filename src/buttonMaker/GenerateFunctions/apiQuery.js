@@ -37,7 +37,6 @@ async function queryAnswer(colors) {
         .post("http://colormind.io/api/", JSON.stringify(data))
 
         .then((response) => {
-            console.log(response);
             let newColors = {};
             unknownColors.forEach(
                 (value, index) =>
@@ -48,7 +47,6 @@ async function queryAnswer(colors) {
                         ),
                     })
             );
-            console.log(newColors);
             return newColors;
         })
 

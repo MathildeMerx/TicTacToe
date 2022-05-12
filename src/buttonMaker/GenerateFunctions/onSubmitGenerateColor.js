@@ -7,17 +7,11 @@ async function onSubmitGenerateColor(formState, formDispatch) {
         formState.borderColor,
         formState.backgroundColor,
     ]);
-
-    for (const [colorType, colorValue] of Object.entries(newColors)) {
-        // Each color chosen by the API is assigned
-        formDispatch({
-            type: "update",
-            payload: {
-                key: colorType,
-                value: colorValue,
-            },
-        });
-    }
+    // Each color chosen by the API is assigned
+    formDispatch({
+        type: "update",
+        payload: newColors,
+    });
 }
 
 export { onSubmitGenerateColor };

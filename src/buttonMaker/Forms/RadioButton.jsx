@@ -1,4 +1,4 @@
-import { clickForm } from "./formLogic";
+import { updateForm } from "./formLogic";
 
 // Radio button for choosing border style
 function RadioButton({ value, valueType, formDispatch }) {
@@ -10,7 +10,11 @@ function RadioButton({ value, valueType, formDispatch }) {
                 name={valueType}
                 onClick={(event) => {
                     event.preventDefault();
-                    clickForm(event.target.name, event.target.id, formDispatch);
+                    updateForm(
+                        event.target.name,
+                        event.target.id,
+                        formDispatch
+                    );
                 }}
                 className="radio"
             />

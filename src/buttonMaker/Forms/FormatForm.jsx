@@ -1,4 +1,4 @@
-import { changeForm } from "./formLogic";
+import { updateForm } from "./formLogic";
 import { ColorInput } from "./ColorInput";
 
 // Component used to let the user modify the format of the button
@@ -22,7 +22,7 @@ function FormatForm({ formState, formDispatch }) {
                     step="10"
                     value={formState.width}
                     onChange={(event) =>
-                        changeForm(
+                        updateForm(
                             event.target.id,
                             event.target.value,
                             formDispatch
@@ -43,7 +43,7 @@ function FormatForm({ formState, formDispatch }) {
                     step="10"
                     value={formState.height}
                     onChange={(event) =>
-                        changeForm(
+                        updateForm(
                             event.target.id,
                             event.target.value,
                             formDispatch

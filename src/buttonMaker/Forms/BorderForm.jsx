@@ -1,5 +1,5 @@
 import { ColorInput } from "./ColorInput";
-import { changeForm } from "./formLogic";
+import { updateForm } from "./formLogic";
 import { RadioButton } from "./RadioButton";
 
 // All possible border styles
@@ -49,7 +49,7 @@ function BorderForm({ formState, formDispatch }) {
                     max="20"
                     value={formState.borderWidth}
                     onChange={(event) =>
-                        changeForm(
+                        updateForm(
                             event.target.id,
                             event.target.value,
                             formDispatch
@@ -69,7 +69,7 @@ function BorderForm({ formState, formDispatch }) {
                     max="150"
                     value={formState.borderRadius}
                     onChange={(event) =>
-                        changeForm(
+                        updateForm(
                             event.target.id,
                             event.target.value,
                             formDispatch
