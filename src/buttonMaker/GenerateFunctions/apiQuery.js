@@ -47,6 +47,7 @@ async function queryAnswer(colors) {
                         ),
                     })
             );
+            console.log(newColors);
             return newColors;
         })
 
