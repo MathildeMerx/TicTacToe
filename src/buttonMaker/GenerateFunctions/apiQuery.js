@@ -33,7 +33,7 @@ async function queryAnswer(colors) {
     };
 
     // API call
-    let query = await axios
+    axios
         .post("http://colormind.io/api/", JSON.stringify(data))
 
         .then((response) => {
@@ -47,12 +47,10 @@ async function queryAnswer(colors) {
                         ),
                     })
             );
-            return newColors;
+            console.log(newColors);
         })
 
         .catch((error) => console.log(error));
-
-    return query;
 }
 
 export { queryAnswer };
